@@ -258,6 +258,10 @@ class Fecha {
         
         return new Fecha($newDia, $newMes, $newAnio); // con nuevos dias
     }
+
+    public function __toString() {
+        return "Fecha: " . $this->fechaFormatoAbreviado();
+    }
 }
 
 class Login {
