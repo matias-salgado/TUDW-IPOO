@@ -11,7 +11,7 @@ $primeraDireccion = new Direccion("Av. Siempre Viva", 742);
 // 2) Crear un objeto Alumno llamado "Bart Simpson"
 $alumnoBart = new Alumno("Bart", "Simpson", $primeraDireccion);
 
-$alumnoBart->mostrarDatos(); // Muestra dirección original cargada desde el constructor
+echo $alumnoBart->mostrarDatos(); // Muestra dirección original cargada desde el constructor
 
 // 3) Asignar la dirección al alumno usando delegación
 $segundaDireccion = new Direccion("Av. Siempre Triste", 247);
@@ -19,4 +19,4 @@ $segundaDireccion = new Direccion("Av. Siempre Triste", 247);
 $alumnoBart->setDireccion($segundaDireccion); // Muestra nueva dirección cargada por setter
 
 // 4) Mostrar los datos completos del alumno
-$alumnoBart->mostrarDatos();
+echo $alumnoBart->mostrarDatos();

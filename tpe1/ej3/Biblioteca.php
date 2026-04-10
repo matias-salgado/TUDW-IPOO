@@ -33,20 +33,30 @@ class Biblioteca {
 
     // TODO: Crear un método agregarLibro($libro) que reciba un objeto Libro
     public function agregarLibro(Libro $libro) {
-        $agregado = true;
+        $agregado = false;
+        $librosActuales = $this->getLibros();
 
-        $this->libros[] = $libro;
+        $librosActuales[] = $libro;
+        // Alternativa con array_push()
+        // array_push($librosActuales, $libro);
+
+        $this->setLibros($librosActuales);
+        $agregado = true;
 
         return $agregado;
     }
 
     // TODO: Crear un método mostrarLibrosDisponibles() que liste solo los libros que están disponibles
     public function mostrarLibrosDisponibles() {
+        $output = "";
+
         foreach ($this->getLibros() as $libro) {
             if ($libro->estaDisponible()) {
-                $libro->mostrarInfo();
+                $output .= $libro->mostrarInfo();
             }
         }
+
+        return $output;
     }
 
     // TODO: Crear un método devolverTotalPrestamos() devuelva la cantidad de prestamos totales de la biblioteca

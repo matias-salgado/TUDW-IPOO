@@ -43,8 +43,12 @@ class Alumno {
 
     // TODO: Crear un método mostrarDatos() que imprima el nombre, apellido y dirección completa del alumno
     public function mostrarDatos() {
-        echo "Nombre: " . $this->getNombre() . "\n";
-        echo "Apellido: " . $this->getApellido() . "\n";
-        echo "Dirección: " . $this->direccion->getDireccionCompleta() . "\n";
+        $output = "";
+
+        $output .= "Nombre: " . $this->getNombre() . "\n";
+        $output .= "Apellido: " . $this->getApellido() . "\n";
+        $output .= "Dirección: " . $this->direccion->getDireccionCompleta() . "\n";
+
+        return $output;
     }
 }

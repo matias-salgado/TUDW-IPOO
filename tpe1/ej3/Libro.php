@@ -14,6 +14,7 @@ class Libro {
     }
 
     // TODO: Crear los métodos setter y getters de todos los atributos.
+
     public function setTitulo($elTitulo) {
         $this->titulo = $elTitulo;
     }
@@ -58,11 +59,9 @@ class Libro {
             $nuevaCantidadPrestamos = $this->getCantidadPrestamos() + 1;
             $this->setCantidadPrestamos($nuevaCantidadPrestamos);
             $prestado = true;
-        } else {
-            echo "ERROR: el libro ya está prestado";
         }
 
-        return $prestado;
+        return $prestado; // `false` si el libro ya está prestado y el programa principal muestra el error
     }
 
     // TODO: Crear un método devolver() que lo marque como disponible nuevamente.
@@ -72,8 +71,6 @@ class Libro {
         if (!$this->disponible) {
             $this->setDisponible(true);
             $devuelto = true;
-        } else {
-            echo "ERROR: el libro ya está devuelto\n";
         }
 
         return $devuelto;
@@ -82,7 +79,7 @@ class Libro {
     // TODO: Crear un método mostrarInfo() que imprima: "Titulo (Autor) - Disponible/Prestado - y cantidad de Prestamos"
     public function mostrarInfo() {
         $estado = $this->getDisponible() ? "Disponible" : "Prestado";
-        echo $this->getTitulo() . " (" . $this->getAutor() . ") - " . $estado . " - Prestado " . $this->getCantidadPrestamos() . " veces\n"; 
+        return $this->getTitulo() . " (" . $this->getAutor() . ") - " . $estado . " - Prestado " . $this->getCantidadPrestamos() . " veces\n"; 
     }
 
     // TODO: Crear un método estaDisponible() que devuelva true/false según corresponda.

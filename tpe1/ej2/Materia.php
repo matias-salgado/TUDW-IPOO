@@ -34,7 +34,12 @@ class Materia {
         $agregada = false;
 
         if ($nota >= 1 && $nota <= 10) {
-            $this->notas[] = $nota;
+            $notasActuales = $this->getNotas();
+
+            $notasActuales[] = $nota;
+
+            $this->setNotas($notasActuales);
+
             $agregada = true;
         }
 

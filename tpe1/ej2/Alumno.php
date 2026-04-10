@@ -44,25 +44,38 @@ class Alumno {
     public function __toString() {
         $output = "Alumno: " . $this->getNombre() . " " . $this->getApellido() . "\n";
         $output .= "Cantidad de Materias: " . count($this->getMaterias()) . "\n";
+        $output .= "Promedio general: " . $this->calcularPromedioGeneral() . "\n";
 
         return $output;
     }
 
     // TODO: Crear un método agregarMateria($materia) que reciba un objeto Materia
     public function agregarMateria(Materia $materia) {
-        $this->materias[] = $materia;
+        $agregada = false;
+        $materiasActuales = $this->getMaterias();
+
+        $materiasActuales[] = $materia;
         // Alternativa con array_push()
-        // array_push($this->materias, $materia);
+        // array_push($materiasActuales, $materia);
+
+        $this->setMaterias($materiasActuales);
+        $agregada = true;
+
+        return $agregada;
     }
 
     // TODO: Crear un método mostrarMaterias() que liste el nombre de cada materia
     //       y su promedio de notas
     public function mostrarMaterias() {
+        $output = "";
+
         foreach ($this->getMaterias() as $materia) {
-            echo "Materia: " . $materia->getNombre() . "\n";
-            echo "Nota promedio: " . $materia->calcularPromedio() . "\n";
-            echo "-----\n";
+            $output .= "Materia: " . $materia->getNombre() . "\n";
+            $output .= "Nota promedio: " . $materia->calcularPromedio() . "\n";
+            $output .= "-----\n";
         }
+
+        return $output;
     }
 
     // TODO EXTRA: Crear un método calcularPromedioGeneral() que saque el promedio de TODAS las materias

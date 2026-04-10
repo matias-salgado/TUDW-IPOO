@@ -38,8 +38,8 @@ $alumnoLisa->agregarMateria($musica);
 
 // 5) Mostrar los datos de Lisa y el promedio general
 echo $alumnoLisa;
-echo "Promedio general materias: " . $alumnoLisa->calcularPromedioGeneral() . "\n";
 
 // 6) Mostrar las materias y calcular el promedio general
-$alumnoLisa->mostrarMaterias();
+echo $alumnoLisa->mostrarMaterias();
 
+$promedioGeneral = $alumnoLisa->calcularPromedioGeneral();

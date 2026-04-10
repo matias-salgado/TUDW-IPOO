@@ -25,23 +25,44 @@ $biblio->agregarLibro($libro2);
 $biblio->agregarLibro($libro3);
 
 // Prestar el libro "El Principito"
-$libro2->prestar();
+if ($libro2->prestar()) {
+    echo "Se ha prestado el libro \"" . $libro2->getTitulo() . "\"\n";
+} else {
+    echo "ERROR: el libro \"" . $libro2->getTitulo() . "\" ya está prestado\n";
+}
 
 // Mostrar los libros disponibles en la biblioteca
-$biblio->mostrarLibrosDisponibles();
+echo $biblio->mostrarLibrosDisponibles();
 
 // Prestar el libro "Cien Años de Soledad"
-$libro1->prestar();
+if ($libro1->prestar()) {
+    echo "Se ha prestado el libro \"" . $libro1->getTitulo() . "\"\n";
+} else {
+    echo "ERROR: el libro \"" . $libro1->getTitulo() . "\" ya está prestado\n";
+}
 
 // Prestar el libro "Cien Años de Soledad"
-$libro1->prestar();
+if ($libro1->prestar()) {
+    echo "Se ha prestado el libro \"" . $libro1->getTitulo() . "\"\n";
+} else {
+    echo "ERROR: el libro \"" . $libro1->getTitulo() . "\" ya está prestado\n";
+}
 
 // Devolver el libro prestado y volver a mostrar la lista
-$libro1->devolver();
-$biblio->mostrarLibrosDisponibles();
+if ($libro1->devolver()) {
+    echo "Se ha devuelto el libro \"" . $libro1->getTitulo() . "\"\n";
+} else {
+    echo "ERROR: el libro \"" . $libro1->getTitulo() . "\" ya está devuelto\n";
+}
+
+echo $biblio->mostrarLibrosDisponibles();
 
 // Prestar el libro "Cien Años de Soledad"
-$libro1->prestar();
+if ($libro1->prestar()) {
+    echo "Se ha prestado el libro \"" . $libro1->getTitulo() . "\"\n";
+} else {
+    echo "ERROR: el libro \"" . $libro1->getTitulo() . "\" ya está prestado\n";
+}
 
 // Permitirle al usuario cargar un nuevo libro
 echo "Ingrese el título de un libro: ";
@@ -53,11 +74,15 @@ $libro4 = new Libro($titulo, $autor);
 $biblio->agregarLibro($libro4);
 
 // Prestar ese nuevo libro
-$libro4->prestar();
+if ($libro4->prestar()) {
+    echo "Se ha prestado el libro \"" . $libro4->getTitulo() . "\"\n";
+} else {
+    echo "ERROR: el libro \"" . $libro4->getTitulo() . "\" ya está prestado\n";
+}
 
 // Mostrar los libros disponibles en la biblioteca
-$biblio->mostrarLibrosDisponibles();
+echo $biblio->mostrarLibrosDisponibles();
 
 // Mostrar el total de préstamos realizados
-echo "La biblioteca " . $biblio->getNombre() . " ha prestado " . $biblio->devolverTotalPrestamos() . " libros";
+echo "La biblioteca \"" . $biblio->getNombre() . "\" ha prestado " . $biblio->devolverTotalPrestamos() . " libros";
 
