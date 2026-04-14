@@ -333,7 +333,7 @@ class Login {
     private function existeEnUltimasContrasenias($contrasenia) {
         $existe = false;
 
-        for ($i = 0; $i < count($this->ultimasContrasenias); $i++) {
+        for ($i = 0; $i < count($this->ultimasContrasenias); $i++) {    // TODO: recorrido parcial, cortar al encontrarlo
             if ($this->ultimasContrasenias[$i] == $contrasenia)
                 $existe = true;
         }
