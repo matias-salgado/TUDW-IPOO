@@ -1,14 +1,15 @@
 <?php
+include('../ej6/Persona.php');
 
 class CuentaBancaria {
     private int $nroCuenta;
-    private int $dniCliente;
+    private Persona $persona;
     private float $saldoActual;
     private float $interesAnual;
 
-    public function __construct(int $nroCuenta, int $dniCliente, float $saldoActual, float $interesAnual) {
+    public function __construct(int $nroCuenta, Persona $persona, float $saldoActual, float $interesAnual) {
         $this->nroCuenta = $nroCuenta;
-        $this->dniCliente = $dniCliente;
+        $this->persona = $persona;
         $this->saldoActual = $saldoActual;
         $this->interesAnual = $interesAnual;
     }
@@ -17,8 +18,8 @@ class CuentaBancaria {
         $this->nroCuenta = $nroCuenta;
     }
 
-    public function setDniCliente(int $dniCliente) {
-        $this->dniCliente = $dniCliente;
+    public function setPersona(Persona $persona) {
+        $this->persona = $persona;
     }
 
     public function setSaldoActual(float $saldoActual) {
@@ -33,8 +34,8 @@ class CuentaBancaria {
         return $this->nroCuenta;
     }
 
-    public function getDniCliente() {
-        return $this->dniCliente;
+    public function getPersona() {
+        return $this->persona;
     }
 
     public function getSaldoActual() {
@@ -90,10 +91,6 @@ class CuentaBancaria {
         return str_pad($this->getNroCuenta(), 5, "0", STR_PAD_LEFT);
     }
 
-    public function getDniFormatted() {
-        return number_format($this->getDniCliente(), 0, ',', '.');
-    }
-
     public function getSaldoFormatted() {
         return '$' . number_format($this->getSaldoActual(), 2, ',', '.');
     }
@@ -104,7 +101,7 @@ class CuentaBancaria {
 
     public function __toString() {
         $datos = "Número de cuenta: " . $this->getNroCuentaFormatted() . "\n";
-        $datos .= "DNI del cliente: " . $this->getDniFormatted() . "\n";
+        $datos .= "Cuenta de " . $this->getPersona()->__toString();
         $datos .= "Saldo de la cuenta: " . $this->getSaldoFormatted() . "\n";
         $datos .= "Interés anual: " . $this->getInteresFormatted() . "\n";
 

@@ -1,7 +1,9 @@
 <?php
 include("CuentaBancaria.php");
 
-$cuenta1 = new CuentaBancaria(101, 32410877, 1000000, 24);
+$persona1 = new Persona("Matias", "Salgado", 12432178);
+
+$cuenta1 = new CuentaBancaria(101, $persona1, 1000000, 24);
 
 echo $cuenta1;
 
