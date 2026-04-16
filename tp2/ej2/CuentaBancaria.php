@@ -3,13 +3,13 @@ include('../ej6/Persona.php');
 
 class CuentaBancaria {
     private int $nroCuenta;
-    private Persona $persona;
+    private Persona $cliente;
     private float $saldoActual;
     private float $interesAnual;
 
-    public function __construct(int $nroCuenta, Persona $persona, float $saldoActual, float $interesAnual) {
+    public function __construct(int $nroCuenta, Persona $cliente, float $saldoActual, float $interesAnual) {
         $this->nroCuenta = $nroCuenta;
-        $this->persona = $persona;
+        $this->cliente = $cliente;
         $this->saldoActual = $saldoActual;
         $this->interesAnual = $interesAnual;
     }
@@ -18,8 +18,8 @@ class CuentaBancaria {
         $this->nroCuenta = $nroCuenta;
     }
 
-    public function setPersona(Persona $persona) {
-        $this->persona = $persona;
+    public function setCliente(Persona $cliente) {
+        $this->cliente = $cliente;
     }
 
     public function setSaldoActual(float $saldoActual) {
@@ -34,8 +34,8 @@ class CuentaBancaria {
         return $this->nroCuenta;
     }
 
-    public function getPersona() {
-        return $this->persona;
+    public function getCliente() {
+        return $this->cliente;
     }
 
     public function getSaldoActual() {
@@ -101,7 +101,7 @@ class CuentaBancaria {
 
     public function __toString() {
         $datos = "Número de cuenta: " . $this->getNroCuentaFormatted() . "\n";
-        $datos .= "Cuenta de " . $this->getPersona()->__toString();
+        $datos .= "Cuenta de " . $this->getCliente()->__toString();
         $datos .= "Saldo de la cuenta: " . $this->getSaldoFormatted() . "\n";
         $datos .= "Interés anual: " . $this->getInteresFormatted() . "\n";
 
