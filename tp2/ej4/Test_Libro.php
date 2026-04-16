@@ -39,13 +39,22 @@ function mostrarLibros(array $arregloLibros) {
     return $datos;
 }
 
+$autor1 = new Persona("Italo", "Calvino", 10123456);
+
+$autor2 = new Persona("Gabriel", "García Márquez", 10234567);
+
+$autor3 = new Persona("Julio", "Cortázar", 10345678);
+
+$autor4 = new Persona("Carlos", "Ruiz Zafón", 10456789);
+
+$autor5 = new Persona("José", "Saramago", 10678901);
+
 $libro1 = new Libro(
     "84-7844-453-X",
     "Si una noche de invierno un viajero",
     2021,
     "Siruela",
-    "Italo",
-    "Calvino"
+    $autor1
 );
 
 $libro2 = new Libro(
@@ -53,8 +62,7 @@ $libro2 = new Libro(
     "Cien años de soledad",
     2007,
     "Cátedra",
-    "Gabriel",
-    "García Márquez"
+    $autor2
 );
 
 $libro3 = new Libro(
@@ -62,8 +70,7 @@ $libro3 = new Libro(
     "Rayuela",
     2013,
     "Alfaguara",
-    "Julio",
-    "Cortázar"
+    $autor3
 );
 
 $libro4 = new Libro(
@@ -71,8 +78,7 @@ $libro4 = new Libro(
     "La sombra del viento",
     2001,
     "Planeta",
-    "Carlos",
-    "Ruiz Zafón"
+    $autor4
 );
 
 $libro5 = new Libro(
@@ -80,8 +86,7 @@ $libro5 = new Libro(
     "El otoño del patriarca",
     2014,
     "Alfaguara",
-    "Gabriel",
-    "García Márquez"
+    $autor1
 );
 
 $libro6 = new Libro(
@@ -89,19 +94,23 @@ $libro6 = new Libro(
     "Ensayo sobre la ceguera",
     2006,
     "Seix Barral",
-    "José",
-    "Saramago"
+    $autor5
 );
 
 $libros = [$libro1, $libro2, $libro3, $libro4, $libro5, $libro6];
+
+$autor6 = new Persona("Ernesto", "Sabato", 10789012);
+
+$autor7 = new Persona("Mario", "Vargas Llosa", 10890123);
+
+$autor8 = new Persona("Juan", "Rulfo", 10901234);
 
 $libro7 = new Libro(
     "978-84-663-0184-2",
     "El túnel",
     2011,
     "Punto de Lectura",
-    "Ernesto",
-    "Sabato"
+    $autor6
 );
 
 $libro8 = new Libro(
@@ -109,8 +118,7 @@ $libro8 = new Libro(
     "La ciudad y los perros",
     2012,
     "Seix Barral",
-    "Mario",
-    "Vargas Llosa"
+    $autor7
 );
 
 $libro9 = new Libro(
@@ -118,8 +126,7 @@ $libro9 = new Libro(
     "Pedro Páramo",
     2010,
     "Espasa",
-    "Juan",
-    "Rulfo"
+    $autor8
 );
 
 echo "Datos del libro 1:\n" . $libro1->__toString();

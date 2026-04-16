@@ -1,27 +1,25 @@
 <?php
+include('../ej6/Persona.php');
 
 class Libro {
     private string $isbn;
     private string $titulo;
     private int $anioEdicion;
     private string $editorial;
-    private string $nombreAutor;
-    private string $apellidoAutor;
+    private Persona $autor;
 
     public function __construct(
         string $isbn,
         string $titulo,
         int $anioEdicion,
         string $editorial,
-        string $nombreAutor,
-        string $apellidoAutor
+        Persona $autor
     ) {
         $this->isbn = $isbn;
         $this->titulo = $titulo;
         $this->anioEdicion = $anioEdicion;
         $this->editorial = $editorial;
-        $this->nombreAutor = $nombreAutor;
-        $this->apellidoAutor = $apellidoAutor;
+        $this->autor = $autor;
     }
 
     public function setIsbn($isbn) {
@@ -40,12 +38,8 @@ class Libro {
         $this->editorial = $editorial;
     }
 
-    public function setNombreAutor($nombreAutor) {
-        $this->nombreAutor = $nombreAutor;
-    }
-
-    public function setApellidoAutor($apellidoAutor) {
-        $this->apellidoAutor = $apellidoAutor;
+    public function setAutor(Persona $autor) {
+        $this->autor = $autor;
     }
 
     public function getIsbn() {
@@ -64,12 +58,8 @@ class Libro {
         return $this->editorial;
     }
 
-    public function getNombreAutor() {
-        return $this->nombreAutor;
-    }
-
-    public function getApellidoAutor() {
-        return $this->apellidoAutor;
+    public function getAutor() {
+        return $this->autor;
     }
 
     public function __toString() {
@@ -77,7 +67,7 @@ class Libro {
         $datos .= "Título: " . $this->getTitulo() . "\n";
         $datos .= "Año de edición: " . $this->getAnioEdicion() . "\n";
         $datos .= "Editorial: " . $this->getEditorial() . "\n";
-        $datos .= "Autor: " . $this->getNombreAutor() . " " . $this->getApellidoAutor() . "\n";
+        $datos .= "Autor es " . $this->getAutor()->__toString();
 
         return $datos;
     }
