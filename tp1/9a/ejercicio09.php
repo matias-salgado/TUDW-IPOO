@@ -1,42 +1,5 @@
 <?php
 
-class Calculadora {
-    private $memoria;
-
-    // TODO: contructor
-
-    public function getMemoria() {
-        return $this->memoria;
-    }
-
-    public function setMemoria($valor) {
-        $this->memoria = $valor;
-    }
-
-    public function sumar($a) {
-        $this->setMemoria($this->getMemoria() + $a);
-    }
-
-    public function restar($a) {
-        $this->setMemoria($this->getMemoria() - $a);
-    }
-
-    public function multiplicar($a) {
-        $this->setMemoria($this->getMemoria() * $a);
-    }
-
-    public function dividir($a) {
-        if ($a != 0)
-            $this->setMemoria($this->getMemoria() / $a);
-        else
-            throw new Exception("Error matemático: no se puede dividir por 0");
-    }
-
-    public function limpiarMemoria() {
-        $this->setMemoria(0);
-    }
-}
-
 class Reloj {
     private $horas;
     private $minutos;
