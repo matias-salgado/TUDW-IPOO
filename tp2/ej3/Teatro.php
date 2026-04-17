@@ -1,14 +1,22 @@
 <?php
+include('FuncionTeatral.php');
 
 class Teatro {
     private string $nombre;
     private string $direccion;
+    /**
+     * @var FuncionTeatral[]
+     */
     private array $funciones = [];
 
     public function __construct(string $nombre, string $direccion, array $funciones) {
-        $this->nombre = $nombre;
-        $this->direccion = $direccion;
-        $this->funciones = $funciones;
+        try {
+            $this->nombre = $nombre;
+            $this->direccion = $direccion;
+            $this->setFunciones($funciones);
+        } catch (Exception $e) {
+            throw new Exception("Excepción construyendo Teatro: ". $e->getMessage());
+        }
     }
 
     public function setNombre(string $nombre) {
@@ -20,7 +28,24 @@ class Teatro {
     }
 
     public function setFunciones(array $funciones) {
+        foreach ($funciones as $funcionArreglo) {
+            if ($this->funcionSuperpone($funcionArreglo, $funciones)) {
+                throw new Exception("Hay funciones teatrales que se superponen");
+            }
+        }
         $this->funciones = $funciones;
+    }
+
+    public function setFuncion(int $indiceFuncion, FuncionTeatral $nuevaFuncion) {
+        $funciones = $this->getFunciones();
+
+        $funciones[$indiceFuncion] = $nuevaFuncion;
+        
+        try {
+            $this->setFunciones($funciones);
+        } catch (Exception $e) {
+            throw new Exception("Excepción setteando función teatral: ". $nuevaFuncion->__toString() . "\n" . $e->getMessage());
+        }
     }
 
     public function getNombre() {
@@ -42,21 +67,15 @@ class Teatro {
         return $funcion;
     }
 
-    public function setFuncion(int $indiceFuncion, $nuevaFuncion) {
-        $funciones = $this->getFunciones();
-        $funciones[$indiceFuncion] = $nuevaFuncion;
-        $this->setFunciones($funciones);
-    }
-
     public function actualizarNombreFuncion(int $indiceFuncion, string $nombre) {
         $funcion = $this->getFuncion($indiceFuncion);
-        $funcion["nombre"] = $nombre;
+        $funcion->setNombre($nombre);
         $this->setFuncion($indiceFuncion, $funcion);
     }
 
     public function actualizarPrecioFuncion(int $indiceFuncion, float $precio) {
         $funcion = $this->getFuncion($indiceFuncion);
-        $funcion["precio"] = $precio;
+        $funcion->setPrecio($precio);
         $this->setFuncion($indiceFuncion, $funcion);
     }
 
@@ -64,22 +83,11 @@ class Teatro {
         $funciones = $this->getFunciones();
 
         foreach ($funciones as $i => $funcion) {
-            $precio = $funcion["precio"];
+            $precio = $funcion->getPrecio();
             $precio += ($precio / 100) * $incremento;
-            $funcion["precio"] = $precio;
+            $funcion->setPrecio($precio);
             $this->setFuncion($i, $funcion);
         }
-    }
-
-    public function getPrecioFuncionFormatted($funcion) {
-        return '$' . number_format($funcion["precio"], 2, ',', '.');
-    }
-
-    public function mostrarFuncion(array $funcion) {
-        $datos = "Nombre de función: " . $funcion["nombre"] . "\n";
-        $datos .= "Precio: " . $this->getPrecioFuncionFormatted($funcion) . "\n";
-
-        return $datos;
     }
 
     public function mostrarFunciones() {
@@ -87,7 +95,7 @@ class Teatro {
         $datos = "";
 
         foreach ($funciones as $funcion) {
-            $datos .= $this->mostrarFuncion($funcion);
+            $datos .= $funcion->__toString();
             $datos .= "-----\n";
         }
 
@@ -100,5 +108,22 @@ class Teatro {
         $datos .= "Cantidad de funciones: " . count($this->getFunciones()) . "\n";
 
         return $datos;
+    }
+
+    public function funcionSuperpone(FuncionTeatral $funcion, array $funciones) {
+        $superpone = false;
+        $cantFunciones = count($funciones);
+        $i = 0;
+
+        while (!$superpone && $i < $cantFunciones) {
+            $funcionArreglo = $funciones[$i];
+            if (!$funcion->equals($funcionArreglo)) { // No avanzamos si es "la misma" función teatral
+                $superpone = $funcion->horaInicioIguales($funcionArreglo); // True si tienen misma hora de inicio
+            }
+
+            $i += 1;
+        }
+
+        return $superpone;
     }
 }
