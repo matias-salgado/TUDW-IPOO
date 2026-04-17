@@ -71,7 +71,11 @@ echo $teatro1;
 
 echo $teatro1->mostrarFunciones();
 
-$teatro1->incrementarPrecioFunciones(50);
+try {
+    $teatro1->incrementarPrecioFunciones(50);
+} catch(Exception $e) {
+    echo "Error incrementando precio de función: " . $e->getMessage() . "\n";
+}
 
 echo $teatro1;
 
@@ -100,6 +104,30 @@ try {
     $teatro1->setFunciones($funciones3);
 } catch (Exception $e) {
     echo "Error asignando nuevas funciones a Teatro: " . $e->getMessage() . "\n";
+}
+
+try {
+    $teatro1->actualizarNombreFuncion(10, "Luz en la ciudad");
+} catch (Exception $e) {
+    echo "Error actualizando nombre de función: " . $e->getMessage() . "\n";
+}
+
+try {
+    $teatro1->actualizarPrecioFuncion(0, -1000);
+} catch (Exception $e) {
+    echo "Error actualizando precio de función: " . $e->getMessage() . "\n";
+}
+
+try {
+    $teatro1->actualizarNombreFuncion(0, "Luz en la ciudad");
+} catch (Exception $e) {
+    echo "Error actualizando nombre de función: " . $e->getMessage() . "\n";
+}
+
+try {
+    $teatro1->actualizarPrecioFuncion(0, 4500);
+} catch (Exception $e) {
+    echo "Error actualizando precio de función: " . $e->getMessage() . "\n";
 }
 
 echo $teatro1->mostrarFunciones();

@@ -38,6 +38,10 @@ class Teatro {
 
     public function setFuncion(int $indiceFuncion, FuncionTeatral $nuevaFuncion) {
         $funciones = $this->getFunciones();
+        $maxIndice = count($funciones) - 1;
+
+        if ($indiceFuncion < 0 || $indiceFuncion > $maxIndice)
+            throw new Exception("Error setteando función: posición fuera de rango (" . $indiceFuncion . ")");
 
         $funciones[$indiceFuncion] = $nuevaFuncion;
         
@@ -62,21 +66,34 @@ class Teatro {
 
     public function getFuncion(int $indiceFuncion) {
         $funciones = $this->getFunciones();
+        $maxIndice = count($funciones) - 1;
+
+        if ($indiceFuncion < 0 || $indiceFuncion > $maxIndice)
+            throw new Exception("Error obteniendo función: posición fuera de rango (" . $indiceFuncion . ")");
+
         $funcion = $funciones[$indiceFuncion];
 
         return $funcion;
     }
 
     public function actualizarNombreFuncion(int $indiceFuncion, string $nombre) {
-        $funcion = $this->getFuncion($indiceFuncion);
-        $funcion->setNombre($nombre);
-        $this->setFuncion($indiceFuncion, $funcion);
+        try {
+            $funcion = $this->getFuncion($indiceFuncion);
+            $funcion->setNombre($nombre);
+            $this->setFuncion($indiceFuncion, $funcion);
+        } catch (Exception $e) {
+            throw new Exception("Error en actualización de nombre: " . $e->getMessage());
+        }
     }
 
     public function actualizarPrecioFuncion(int $indiceFuncion, float $precio) {
-        $funcion = $this->getFuncion($indiceFuncion);
-        $funcion->setPrecio($precio);
-        $this->setFuncion($indiceFuncion, $funcion);
+        try {
+            $funcion = $this->getFuncion($indiceFuncion);
+            $funcion->setPrecio($precio);
+            $this->setFuncion($indiceFuncion, $funcion);
+        } catch (Exception $e) {
+            throw new Exception("Error en actualización de precio: " .  $e->getMessage());
+        }
     }
 
     public function incrementarPrecioFunciones(float $incremento) {
@@ -85,8 +102,12 @@ class Teatro {
         foreach ($funciones as $i => $funcion) {
             $precio = $funcion->getPrecio();
             $precio += ($precio / 100) * $incremento;
-            $funcion->setPrecio($precio);
-            $this->setFuncion($i, $funcion);
+            try {
+                $funcion->setPrecio($precio);
+                $this->setFuncion($i, $funcion);
+            } catch (Exception $e) {
+                throw new Exception("Error en incremento de precio: " . $funcion->__toString() . "\nPrecio: " . $precio);
+            }
         }
     }
 

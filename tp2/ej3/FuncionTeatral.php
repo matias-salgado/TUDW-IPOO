@@ -47,6 +47,8 @@ class FuncionTeatral {
     }
 
     public function setPrecio(float $precio) {
+        if ($precio < 0)
+            throw new Exception("Error setteando precio: valor menor a 0");
         $this->precio = $precio;
     }
     
