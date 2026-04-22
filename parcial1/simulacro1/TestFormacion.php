@@ -31,7 +31,7 @@ if ($formacion->incorporarPasajeroFormacion(6)) {
     echo "No se han agregado los pasajeros a la formación\n";
 }
 
-echo "Cantidad de pasajeros en la formación: " . $formacion->cantidadPasajerosFormacion() . "\n";
+echo "Cantidad de pasajeros en la formación: " . $formacion->cantPasajerosFormacion() . "\n";
 
 echo $locomotora;
 

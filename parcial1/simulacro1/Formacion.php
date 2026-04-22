@@ -38,8 +38,9 @@ class Formacion {
         return $datos;
     }
 
-    public function agregarVagon(Vagon $vagon): void {
+    public function agregarVagon(Vagon $vagon): bool {
         $this->vagones[] = $vagon;
+        return true;
     }
 
     public function incorporarPasajeroFormacion(int $cantPasajerosASumar): bool {
@@ -56,12 +57,12 @@ class Formacion {
         return $incorporados;
     }
 
-    public function cantidadPasajerosFormacion(): int {
+    public function cantPasajerosFormacion(): int {
         $sumaPasajeros = 0;
         $vagones = $this->getVagones();
 
         foreach ($vagones as $vagon) {
-            $sumaPasajeros += $vagon->getCantidadPasajeros();
+            $sumaPasajeros += $vagon->getCantPasajeros();
         }
 
         return $sumaPasajeros;

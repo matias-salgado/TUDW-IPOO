@@ -7,22 +7,22 @@ class Vagon {
     private float $largo;
     private float $ancho;
     private float $peso;
-    private int $cantidadMaximaPasajeros;
-    private int $cantidadPasajeros;
+    private int $cantMaxPasajeros;
+    private int $cantPasajeros;
 
     public function __construct(
         int $anioInstalacion,
         float $largo,
         float $ancho,
-        int $cantidadMaximaPasajeros,
-        int $cantidadPasajeros
+        int $cantMaxPasajeros,
+        int $cantPasajeros
     ) {
         $this->anioInstalacion = $anioInstalacion;
         $this->largo = $largo;
         $this->ancho = $ancho;
-        $this->peso = $cantidadPasajeros * PESO_PROMEDIO_PASAJEROS;
-        $this->cantidadMaximaPasajeros = $cantidadMaximaPasajeros;
-        $this->cantidadPasajeros = $cantidadPasajeros;
+        $this->peso = $this->calcularPeso($cantPasajeros);
+        $this->cantMaxPasajeros = $cantMaxPasajeros;
+        $this->cantPasajeros = $cantPasajeros;
     }
 
     public function setAnioInstalacion(int $anioInstalacion) {
@@ -41,12 +41,12 @@ class Vagon {
         $this->peso = $peso;
     }
 
-    public function setCantidadMaximaPasajeros(int $cantidadMaximaPasajeros) {
-        $this->cantidadMaximaPasajeros = $cantidadMaximaPasajeros;
+    public function setCantMaxPasajeros(int $cantMaxPasajeros) {
+        $this->cantMaxPasajeros = $cantMaxPasajeros;
     }
 
-    public function setCantidadPasajeros(int $cantidadPasajeros) {
-        $this->cantidadPasajeros = $cantidadPasajeros;
+    public function setCantPasajeros(int $cantPasajeros) {
+        $this->cantPasajeros = $cantPasajeros;
     }
 
     public function getAnioInstalacion() {
@@ -65,12 +65,16 @@ class Vagon {
         return $this->peso;
     }
 
-    public function getCantidadMaximaPasajeros() {
-        return $this->cantidadMaximaPasajeros;
+    public function getCantMaxPasajeros() {
+        return $this->cantMaxPasajeros;
     }
 
-    public function getCantidadPasajeros() {
-        return $this->cantidadPasajeros;
+    public function getCantPasajeros() {
+        return $this->cantPasajeros;
+    }
+
+    private function calcularPeso(int $cantPasajeros) {
+        return $cantPasajeros * PESO_PROMEDIO_PASAJEROS;
     }
 
     public function __toString() {
@@ -78,21 +82,21 @@ class Vagon {
         $datos .= "Largo: " . $this->getLargo() . "\n";
         $datos .= "Ancho: " . $this->getAncho() . "\n";
         $datos .= "Peso: " . $this->getPeso() . "\n";
-        $datos .= "Cant. máxima de pasajeros: " . $this->getCantidadMaximaPasajeros() . "\n";
-        $datos .= "Cant. actual de pasajeros: " . $this->getCantidadPasajeros() . "\n";
+        $datos .= "Cant. máxima de pasajeros: " . $this->getCantMaxPasajeros() . "\n";
+        $datos .= "Cant. actual de pasajeros: " . $this->getCantPasajeros() . "\n";
 
         return $datos;
     }
 
     public function incorporarPasajeroVagon(int $cantPasajerosASumar) {
-        $capacidadMaxima = $this->getCantidadMaximaPasajeros();
-        $cantActual = $this->getCantidadPasajeros();
+        $capacidadMaxima = $this->getCantMaxPasajeros();
+        $cantActual = $this->getCantPasajeros();
         $cantSumada = $cantActual + $cantPasajerosASumar;
         $incorporados = $cantSumada <= $capacidadMaxima;
-        $pesoNuevo = $cantSumada * PESO_PROMEDIO_PASAJEROS;
+        $pesoNuevo = $this->calcularPeso($cantSumada);
 
         if ($incorporados) {
-            $this->setCantidadPasajeros($cantSumada);
+            $this->setCantPasajeros($cantSumada);
             $this->setPeso($pesoNuevo);
         }
 
