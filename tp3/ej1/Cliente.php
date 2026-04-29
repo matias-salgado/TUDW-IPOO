@@ -20,8 +20,7 @@ class Cliente extends Persona {
     public function __toString(): string {
         $datos = "CLIENTE con ";
         $datos .= parent::__toString();
-        $datos .= "----------\n";
-        $datos .= "Nro de cliente: " . $this->getNroCliente();
+        $datos .= "Nro de cliente: " . $this->getNroCliente() . "\n";
 
         return $datos;
     }
