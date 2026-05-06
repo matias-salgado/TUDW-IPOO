@@ -7,9 +7,9 @@ $cliente1 = new Cliente(42_100_100, "Matias", "Salgado", 10_400);
 
 $cliente2 = new Cliente(52_300_300, "Ezequiel", "Sepúlveda", 20_100);
 
-$cuenta1 = new CajaAhorro($cliente1);
+$cuenta1 = new CajaAhorro($cliente1, 100_101);
 
-$cuenta2 = new CuentaCorriente($cliente2, 1_000_000);
+$cuenta2 = new CuentaCorriente($cliente2, 200_202, 1_000_000);
 
 // Seteamos saldos iniciales
 

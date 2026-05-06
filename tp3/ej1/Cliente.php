@@ -24,4 +24,8 @@ class Cliente extends Persona {
 
         return $datos;
     }
+
+    public function equals(Cliente $otroCliente): bool {
+        return $this->getNroCliente() === $otroCliente->getNroCliente();
+    }
 }

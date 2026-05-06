@@ -4,8 +4,8 @@ include_once("Cuenta.php");
 class CuentaCorriente extends Cuenta {
     private float $limiteDescubierto;
 
-    public function __construct(Cliente $duenio, float $limiteDescubierto) {
-        parent::__construct($duenio);
+    public function __construct(Cliente $duenio, int $nroCuenta, float $limiteDescubierto) {
+        parent::__construct($duenio, $nroCuenta);
         $this->limiteDescubierto = $limiteDescubierto;
     }
 
@@ -25,9 +25,14 @@ class CuentaCorriente extends Cuenta {
         return $retirado;
     }
 
+    public function estadoSaldo(): string {
+        return $this->getSaldo() < 0 ? "EN DESCUBIERTO" : "CON SALDO";
+    }
+
     public function __toString(): string {
         $datos = parent::__toString();
         $datos .= "Tipo cuenta: CUENTA CORRIENTE\n";
+        $datos .= "Estado saldo: " . $this->estadoSaldo() . "\n";
 
         return $datos;
     }

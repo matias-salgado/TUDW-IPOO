@@ -2,11 +2,13 @@
 require_once __DIR__ . "/../ej1/Cliente.php";
 
 abstract class Cuenta {
-    protected Cliente $duenio;
-    protected float $saldo;
+    private Cliente $duenio;
+    private int $nroCuenta;
+    private float $saldo;
 
-    public function __construct(Cliente $duenio) {
+    public function __construct(Cliente $duenio, int $nroCuenta) {
         $this->duenio = $duenio;
+        $this->nroCuenta = $nroCuenta;
         $this->saldo = 0;
     }
 
@@ -20,6 +22,10 @@ abstract class Cuenta {
 
     public function getDuenio(): Cliente {
         return $this->duenio;
+    }
+
+    public function getNroCuenta() {
+        return $this->nroCuenta;
     }
 
     public function getSaldo(): float {
@@ -46,6 +52,7 @@ abstract class Cuenta {
         $datos = "CUENTA de ";
         $datos .= $this->getDuenio();
         $datos .= "----------\n";
+        $datos .= "N° de cuenta: " . $this->getNroCuenta() . "\n";
         $datos .= "Saldo: " . $this->saldoCuenta() . "\n";
 
         return $datos;

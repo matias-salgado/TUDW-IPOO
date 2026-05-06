@@ -2,10 +2,8 @@
 include_once("Cuenta.php");
 
 class CajaAhorro extends Cuenta {
-
-    public function __construct(Cliente $duenio) {
-        parent::__construct($duenio);
-        $this->duenio = $duenio;
+    public function __construct(Cliente $duenio, int $nroCuenta) {
+        parent::__construct($duenio, $nroCuenta);
     }
 
     public function realizarRetiro(float $monto): bool {
